@@ -6,8 +6,12 @@
   --pink-200: #F8BBD0;
   --pink-100: #FCE4EC;
   --pink-50: #FFF5F8;
-  --plum: #8E44AD;
-  --plum-deep: #6A2C82;
+  --plum: #8346D8;
+  --plum-deep: #582C96;
+  --lav: #CDAAFE;
+  --lav-100: #E9DAFF;
+  --lav-50: #F7F1FF;
+  --blush: #FDD0DD;
   --yellow: #F2B705;
   --yellow-light: #FFD54F;
   --yellow-50: #FFF8E1;
@@ -47,10 +51,9 @@ a { color: var(--plum); }
   color: var(--plum-deep);
   text-align: center;
   background:
-    radial-gradient(90% 60% at 50% 18%, #FFFFFF 0%, rgba(255, 255, 255, 0) 70%),
-    radial-gradient(60% 50% at 85% 90%, rgba(255, 222, 120, .28), transparent 70%),
-    radial-gradient(60% 50% at 10% 85%, rgba(255, 170, 205, .55), transparent 70%),
-    linear-gradient(175deg, #FFE9F2 0%, #FFD6E6 55%, #FFC6DD 100%);
+    radial-gradient(55% 35% at 50% 16%, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(50% 45% at 8% 92%, rgba(205, 170, 254, .30), transparent 70%),
+    var(--blush);
   padding: calc(28px + env(safe-area-inset-top)) 16px 34px;
 }
 .hero::after {
@@ -63,12 +66,12 @@ a { color: var(--plum); }
 .hero__logo {
   width: 92px; height: auto; margin: 0 auto 10px;
   background: #fff; border-radius: 50%; padding: 14px 12px 10px;
-  box-shadow: 0 0 0 4px rgba(242, 183, 5, .45), 0 0 34px 10px rgba(255, 255, 255, .9), 0 10px 26px rgba(142, 68, 173, .16);
+  box-shadow: 0 0 0 4px rgba(242, 183, 5, .45), 0 0 34px 10px rgba(255, 255, 255, .9), 0 10px 26px rgba(131, 70, 216, .16);
 }
 .brand { margin: 0; line-height: 1; font-weight: 700; }
 .brand__lotus { display: block; font-family: var(--serif); font-size: 46px; letter-spacing: .32em; padding-left: .32em; color: var(--plum-deep); }
 .brand__sub { display: block; font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 38px; color: var(--plum); margin-top: 2px; }
-.brand__by { margin: 8px 0 0; font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 20px; color: #7A4A82; }
+.brand__by { margin: 8px 0 0; font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 20px; color: var(--plum-deep); }
 .brand__by::before, .brand__by::after {
   content: ""; display: inline-block; width: 28px; height: 2px; border-radius: 2px;
   background: var(--yellow); vertical-align: middle; margin: 0 10px;
@@ -106,10 +109,10 @@ a { color: var(--plum); }
   display: block; white-space: nowrap; text-decoration: none; scroll-snap-align: start;
   font-weight: 700; font-size: 14px; color: var(--plum);
   padding: 8px 14px; border-radius: 999px;
-  background: var(--pink-50); border: 1.5px solid var(--pink-100);
+  background: var(--lav-50); border: 1.5px solid var(--lav-100);
   transition: background .15s, color .15s, border-color .15s;
 }
-.catnav__list a[aria-current="true"] { background: var(--plum); border-color: var(--plum); color: #fff; }
+.catnav__list a[aria-current="true"] { background: var(--lav); border-color: var(--lav); color: var(--plum-deep); }
 
 /* Menu */
 .menu { max-width: 720px; margin: 0 auto; padding: 18px 16px 8px; outline: none; }
@@ -127,7 +130,7 @@ a { color: var(--plum); }
 .items {
   list-style: none; margin: 0; padding: 4px 16px;
   background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-  box-shadow: 0 6px 20px rgba(142, 68, 173, .06);
+  box-shadow: 0 6px 20px rgba(131, 70, 216, .06);
 }
 .item { padding: 13px 0; border-bottom: 1px dashed var(--line); }
 .item:last-child { border-bottom: 0; }
@@ -142,7 +145,7 @@ a { color: var(--plum); }
 .photo {
   width: min(560px, calc(100% - 32px)); max-height: calc(100% - 32px); padding: 0; border: 0;
   border-radius: 22px; overflow: hidden; background: #fff; color: var(--ink);
-  box-shadow: 0 24px 60px rgba(106, 44, 130, .28);
+  box-shadow: 0 24px 60px rgba(88, 44, 150, .28);
 }
 .photo::backdrop { background: rgba(42, 31, 45, .62); backdrop-filter: blur(3px); }
 .photo figure { margin: 0; }
@@ -159,7 +162,7 @@ a { color: var(--plum); }
 
 .item__row { display: flex; align-items: baseline; gap: 10px; }
 .item__name { font-weight: 700; font-size: 16.5px; }
-.item__dots { flex: 1; min-width: 16px; border-bottom: 2px dotted var(--pink-200); transform: translateY(-4px); }
+.item__dots { flex: 1; min-width: 16px; border-bottom: 2px dotted var(--lav); transform: translateY(-4px); }
 .item__price { white-space: nowrap; font-weight: 800; font-size: 16.5px; color: var(--plum); font-variant-numeric: tabular-nums; }
 .item__unit { font-weight: 600; font-size: 13px; color: var(--muted); }
 .item__desc { margin: 3px 0 0; font-size: 14px; color: var(--muted); }

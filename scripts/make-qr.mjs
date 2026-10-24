@@ -11,16 +11,16 @@ const display = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 const out = (f) => new URL(`../print/${f}`, import.meta.url);
 
 const C = {
-  ink: '#4A1F5C', // QR modules: deep plum keeps strong contrast for scanners
-  eye: '#8E44AD', // finder centres, brand purple
-  pink700: '#8E44AD',
-  pink100: '#FCE4EC',
-  pink200: '#F8BBD0',
+  ink: '#41206F', // QR modules: deep plum keeps strong contrast for scanners
+  eye: '#8346D8', // finder centres, brand purple
+  pink700: '#8346D8',
+  pink100: '#FFE4EC',
+  pink200: '#CDAAFE',
   yellow: '#F2B705',
   yellowSoft: '#FFE9A8',
   gold: '#A87400',
-  muted: '#7A4A82',
-  bg: '#FFEDF5',
+  muted: '#6B4C8A',
+  bg: '#FDD0DD',
 };
 
 // Lotus mark (same shapes as public/assets/logo.svg), drawn in a 120x96 box.
