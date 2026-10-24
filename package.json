@@ -1,0 +1,20 @@
+{
+  "name": "lotus-butik-cafe-menu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lotus Butik Cafe digital menu with an admin panel (Vercel + Vercel Blob).",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "seed": "node scripts/build-seed.mjs",
+    "hash-password": "node scripts/hash-password.mjs",
+    "qr": "node scripts/make-qr.mjs"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.8.2"
+  },
+  "devDependencies": {
+    "qrcode": "1.5.4"
+  }
+}

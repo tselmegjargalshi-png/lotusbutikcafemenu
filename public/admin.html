@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Menü Yönetimi · Lotus Butik Cafe</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#AD1457">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&family=Nunito+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="/assets/admin.css">
+</head>
+<body>
+  <!-- Login -->
+  <section id="login" class="login" hidden>
+    <form id="loginForm" class="login__card" novalidate>
+      <img src="/assets/logo.svg" alt="" width="84" height="67">
+      <h1>Menü Yönetimi</h1>
+      <p class="login__sub">Lotus Butik Cafe · By Yeliz</p>
+      <label for="username">Kullanıcı adı</label>
+      <input id="username" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      <label for="password">Şifre</label>
+      <div class="pw">
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="button" class="pw__toggle" id="pwToggle" aria-label="Şifreyi göster" aria-pressed="false">Göster</button>
+      </div>
+      <p class="form-error" id="loginError" role="alert"></p>
+      <button class="btn btn--primary btn--block" type="submit" id="loginBtn">Giriş yap</button>
+      <a class="login__back" href="/">← Menüye dön</a>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <div id="app" hidden>
+    <header class="topbar">
+      <div class="topbar__brand">
+        <img src="/assets/logo.svg" alt="" width="40" height="32">
+        <div>
+          <strong>Menü Yönetimi</strong>
+          <span class="status" id="status" aria-live="polite">Yükleniyor…</span>
+        </div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--ghost" href="/" target="_blank" rel="noopener">Menüyü aç</a>
+        <button class="btn btn--primary" id="saveBtn" type="button" disabled>Kaydet</button>
+        <button class="btn btn--ghost" id="logoutBtn" type="button">Çıkış</button>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div class="banner banner--warn" id="storageWarn" hidden>
+        Depolama bağlı değil: değişiklikler kaydedilemez. Vercel projesine bir Blob deposu bağlayın (README'ye bakın).
+      </div>
+
+      <section class="help" aria-label="Kullanım">
+        <p><strong>Nasıl kullanılır?</strong> Ürün adını, fiyatını veya açıklamasını doğrudan kutulara yazın. Sıralamak için ↑ ↓, menüde göstermemek için <em>Gizle</em> kullanın. Bitirince <strong>Kaydet</strong>'e basın; değişiklikler menüde birkaç saniye içinde görünür.</p>
+      </section>
+
+      <div class="toolbar">
+        <div class="search">
+          <label class="sr-only" for="filter">Ürün ara</label>
+          <input id="filter" type="search" placeholder="Ürün veya kategori ara…" autocomplete="off">
+        </div>
+        <label class="chk" id="checkFilterWrap">
+          <input type="checkbox" id="checkFilter">
+          <span>Sadece kontrol edilecekler (<span id="checkCount">0</span>)</span>
+        </label>
+        <div class="toolbar__right">
+          <button class="btn btn--soft" type="button" id="expandAll">Tümünü aç</button>
+          <button class="btn btn--soft" type="button" id="collapseAll">Tümünü kapat</button>
+          <button class="btn btn--soft" type="button" id="addCat">+ Kategori ekle</button>
+        </div>
+      </div>
+
+      <div class="banner banner--info" id="checkInfo" hidden>
+        <span class="flag">Kontrol et</span> etiketli ürünlerin fiyatı fotoğraftan net okunamadı. Doğru fiyatı yazın ve etikete tıklayarak onaylayın.
+      </div>
+
+      <div id="cats" class="cats"></div>
+
+      <section class="backup">
+        <h2>Yedekleme</h2>
+        <p>Her kayıtta otomatik yedek alınır. İsterseniz menünün bir kopyasını bilgisayarınıza da indirebilirsiniz.</p>
+        <div class="backup__row">
+          <button class="btn btn--soft" type="button" id="exportBtn">Yedeği indir (JSON)</button>
+          <label class="btn btn--soft" for="importFile">Yedekten yükle</label>
+          <input type="file" id="importFile" accept="application/json,.json" class="sr-only">
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="/assets/admin.js" defer></script>
+</body>
+</html>
