@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><title>Lotus Butik Cafe · QR Menü Kartı</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&family=Nunito+Sans:wght@600;700;800&display=swap">
+<style>
+@page { size: 105mm 148mm; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.card { width: 105mm; height: 148mm; display: flex; flex-direction: column; align-items: center; text-align: center;
+  font-family: "Nunito Sans", sans-serif; color: #2A1F2D; background: #fff; overflow: hidden; }
+.top { width: 100%; padding: 7mm 6mm 9mm; color: #fff; position: relative;
+  background: radial-gradient(120% 80% at 50% 0%, rgba(255,213,79,.25), transparent 60%), linear-gradient(160deg,#D81B60,#AD1457 70%,#880E4F); }
+.top::after { content:""; position:absolute; left:-10%; right:-10%; bottom:-5mm; height:10mm; background:#fff; border-radius:50% 50% 0 0/100% 100% 0 0; }
+.badge { width: 19mm; height: 19mm; margin: 0 auto 2mm; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 0 0 1mm rgba(255,213,79,.7); }
+.badge svg { width: 14mm; height: auto; }
+.lotus { font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: 25pt; letter-spacing: .3em; padding-left: .3em; line-height: 1; }
+.sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 600; font-size: 21pt; color: #FFD54F; line-height: 1.05; }
+.by { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 11pt; color: #FCE4EC; }
+h1 { margin: 5mm 0 0; font-size: 14pt; font-weight: 800; color: #AD1457; }
+.hint { margin: 1mm 0 3mm; font-size: 8.5pt; color: #6E5D69; }
+.qrwrap { padding: 2.5mm; border: .6mm solid #F8BBD0; border-radius: 4mm; }
+.qr { width: 46mm; height: 46mm; display: block; }
+.url { margin-top: 2.5mm; font-size: 8pt; font-weight: 700; color: #AD1457; }
+.foot { margin-top: auto; width: 100%; padding: 3mm 5mm 4mm; background: #FFF5F8; font-size: 7.5pt; color: #6E5D69; line-height: 1.5; }
+.foot b { color: #2A1F2D; }
+</style></head>
+<body><div class="card">
+  <div class="top"><div class="badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 96" role="img" aria-label="Lotus Butik Cafe logosu">
+  <defs>
+    <linearGradient id="pc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F06292"/><stop offset="1" stop-color="#C2185B"/>
+    </linearGradient>
+    <linearGradient id="pi" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F8A5C2"/><stop offset="1" stop-color="#E0457B"/>
+    </linearGradient>
+    <linearGradient id="po" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FCD3E1"/><stop offset="1" stop-color="#F06292"/>
+    </linearGradient>
+  </defs>
+  <g stroke="#fff" stroke-width="1.6" stroke-linejoin="round">
+    <path fill="url(#po)" d="M60 76C38 77 18 66 6 46c19-3 41 6 54 30Z"/>
+    <path fill="url(#po)" d="M60 76c22 1 42-10 54-30-19-3-41 6-54 30Z"/>
+    <path fill="url(#pi)" d="M60 76C42 68 30 48 32 22c16 9 27 30 28 54Z"/>
+    <path fill="url(#pi)" d="M60 76c18-8 30-28 28-54-16 9-27 30-28 54Z"/>
+    <path fill="url(#pc)" d="M60 6c13 16 17 46 0 70C43 52 47 22 60 6Z"/>
+  </g>
+  <path d="M60 30c3 10 3 26 0 38" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M24 84c12 6 24 8 36 8s24-2 36-8" fill="none" stroke="#F2B705" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="60" cy="80" r="3.2" fill="#F2B705"/>
+</svg></div><div class="lotus">LOTUS</div><div class="sub">Butik Cafe</div><div class="by">By Yeliz</div></div>
+  <h1>Menümüz için okutun</h1>
+  <p class="hint">Telefonunuzun kamerasını QR koda tutun</p>
+  <div class="qrwrap"><svg class="qr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" shape-rendering="crispEdges"><path fill="#FFFFFF" d="M0 0h37v37H0z"/><path stroke="#2A1F2D" d="M2 2.5h7m1 0h1m5 0h1m3 0h2m2 0h2m2 0h7M2 3.5h1m5 0h1m1 0h1m3 0h3m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h2m1 0h2m2 0h1m3 0h1m2 0h3m1 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m1 0h3m1 0h4m6 0h2m2 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h1m3 0h1m2 0h3m4 0h1m2 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h4m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1M3 10.5h2m1 0h1m1 0h2m2 0h1m1 0h1m4 0h1m1 0h3m4 0h1m1 0h5M2 11.5h1m2 0h2m3 0h2m1 0h1m1 0h3m4 0h1m1 0h1m1 0h4m4 0h1M2 12.5h1m2 0h1m2 0h2m2 0h1m1 0h6m3 0h1m4 0h2m2 0h3M5 13.5h1m5 0h3m4 0h1m2 0h1m3 0h2m1 0h1m1 0h1m2 0h2M2 14.5h1m1 0h5m1 0h1m1 0h2m2 0h3m8 0h2m2 0h1m1 0h1M2 15.5h1m4 0h1m1 0h1m2 0h3m4 0h1m1 0h1m1 0h1m2 0h3m5 0h1M2 16.5h1m4 0h3m2 0h5m1 0h2m7 0h1m3 0h4M5 17.5h1m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1m3 0h1m1 0h3m2 0h2m1 0h1m1 0h1M2 18.5h1m1 0h1m1 0h1m1 0h2m7 0h3m2 0h2m3 0h2M3 19.5h2m5 0h4m1 0h1m2 0h3m1 0h3m1 0h4m3 0h2M4 20.5h2m2 0h1m3 0h5m7 0h1m1 0h3m3 0h3M9 21.5h2m2 0h2m1 0h2m2 0h1m2 0h4m2 0h2M2 22.5h1m3 0h3m8 0h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m1 0h2M3 23.5h1m6 0h2m1 0h6m1 0h5m1 0h3m3 0h3M2 24.5h1m5 0h1m3 0h2m3 0h1m1 0h1m1 0h2m3 0h2m1 0h2m2 0h2M3 25.5h4m2 0h2m1 0h1m1 0h1m5 0h1m1 0h2m2 0h2M2 26.5h1m3 0h1m1 0h4m2 0h1m1 0h1m2 0h1m1 0h3m1 0h7m1 0h2M10 27.5h2m1 0h1m1 0h3m2 0h1m1 0h1m3 0h1m3 0h2m1 0h2M2 28.5h7m1 0h1m1 0h2m1 0h1m1 0h1m5 0h1m1 0h2m1 0h1m1 0h1m1 0h3M2 29.5h1m5 0h1m2 0h3m1 0h3m2 0h1m5 0h1m3 0h1M2 30.5h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h3m2 0h1m4 0h6m1 0h1M2 31.5h1m1 0h3m1 0h1m3 0h1m2 0h4m1 0h2m4 0h1m3 0h1m2 0h2M2 32.5h1m1 0h3m1 0h1m1 0h3m3 0h2m6 0h2m4 0h1m3 0h1M2 33.5h1m5 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h2m1 0h4m1 0h1m1 0h1m2 0h1M2 34.5h7m3 0h1m1 0h1m2 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m2 0h2"/></svg></div>
+  <div class="url">lotusbutikcafemenu.vercel.app</div>
+  <div class="foot"><b>@lotus_butik_cafe</b> · 0533 577 97 48<br>Cumhuriyet Mah. Arkadaş Cad. No:5/A, Milas</div>
+</div></body></html>
