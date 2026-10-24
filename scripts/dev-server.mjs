@@ -10,6 +10,10 @@ const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 
 http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost');
   try {
+    if (url.pathname.startsWith('/img/')) {
+      req.url = `/api/img?name=${encodeURIComponent(url.pathname.slice(5))}`;
+      return await (await import(join(root, 'api/img.js'))).default(req, res);
+    }
     if (url.pathname.startsWith('/api/')) {
       const mod = await import(join(root, `${url.pathname}.js`));
       return await mod.default(req, res);

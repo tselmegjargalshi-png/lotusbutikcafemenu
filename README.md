@@ -19,6 +19,8 @@ Admin login credentials are **not** stored in this repository. The password exis
   - `GET /api/menu` – public menu (hidden items and admin-only fields removed).
   - `POST /api/login`, `POST /api/logout` – session cookie (HMAC-signed, HttpOnly, Secure, SameSite=Strict, 12 h).
   - `GET/PUT /api/admin/menu` – full menu for the panel; saving requires a valid session.
+  - `POST /api/admin/upload` – optional product photo (JPG/PNG/WEBP, resized in the browser to max 1200 px), stored in the private Blob store under `images/`.
+  - `GET /img/<name>` – serves a product photo (rewritten to `api/img.js`, cached as immutable).
 - `lib/store.js` – menu storage in a **private Vercel Blob** store (`menu.json`). Every save also writes a dated copy to `backups/`. If nothing has been saved yet, the menu falls back to `lib/seed.js`.
 - `lib/seed.js` – initial menu, transcribed from the printed menu and the handwritten pastry board. Regenerate with `npm run seed` after editing `scripts/build-seed.mjs` (only needed for a full reset; normal edits happen in the admin panel).
 
@@ -31,8 +33,9 @@ Security: scrypt password hash, constant-time comparisons, login brute-force bra
 3. **↑ ↓** ile sıralayın, **Gizle** ile menüden geçici olarak kaldırın (ör. tükendiğinde), **✕** ile silin.
 4. **+ Ürün ekle** / **+ Kategori ekle** ile yeni kayıt açın.
 5. **Kaydet**'e basın (veya Ctrl/⌘+S). Menü birkaç saniye içinde güncellenir.
-6. Sarı **Kontrol et** etiketi: bu fiyat fotoğraftan net okunamadı. Doğruysa etikete tıklayıp onaylayın.
-7. Fiyat biçimi: `150`, `500 / 750` gibi. ₺ işareti otomatik eklenir.
+6. İsteğe bağlı: **📷 Fotoğraf ekle** ile ürüne fotoğraf ekleyin, **Değiştir** / **Kaldır** ile güncelleyin. Fotoğrafı olmayan ürünler eskisi gibi görünür.
+7. Sarı **Kontrol et** etiketi: bu fiyat fotoğraftan net okunamadı. Doğruysa etikete tıklayıp onaylayın.
+8. Fiyat biçimi: `150`, `500 / 750` gibi. ₺ işareti otomatik eklenir.
 
 ## Environment variables (Vercel → Project → Settings → Environment Variables)
 

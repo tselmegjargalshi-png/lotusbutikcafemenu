@@ -319,7 +319,7 @@
           body.append(el('button', {
             class: 'btn btn--soft add-item', type: 'button', text: '+ Ürün ekle',
             onclick: () => {
-              const it = { id: newId('i'), name: '', desc: '', price: '', unit: '', hidden: false, check: false };
+              const it = { id: newId('i'), name: '', desc: '', price: '', unit: '', image: '', hidden: false, check: false };
               cat.items.push(it);
               markDirty(); render();
               refocus(`[data-item="${it.id}"] .js-name`);
@@ -382,9 +382,93 @@
         el('div', { class: 'price-wrap' }, price),
         textField(it, 'unit', { placeholder: 'Birim (kg…)', label: `${it.name || 'Ürün'} birimi`, maxlength: 20 })),
       el('div', { class: 'item__desc' }, textField(it, 'desc', { placeholder: 'Açıklama (isteğe bağlı)', label: `${it.name || 'Ürün'} açıklaması`, maxlength: 200 })),
+      renderPhoto(it),
       tools,
     );
     return row;
+  }
+
+  /* ---------- Photos ---------- */
+
+  const MAX_SIDE = 1200;
+
+  // Downscales in the browser so phone photos (often 5–10 MB) upload quickly and stay small.
+  async function preparePhoto(file) {
+    if (!file.type.startsWith('image/')) throw new Error('Lütfen bir fotoğraf dosyası seçin.');
+    let bitmap;
+    try {
+      bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+    } catch {
+      throw new Error('Bu fotoğraf biçimi okunamadı. JPG veya PNG deneyin.');
+    }
+    const scale = Math.min(1, MAX_SIDE / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(bitmap.width * scale);
+    canvas.height = Math.round(bitmap.height * scale);
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close?.();
+    const toBlob = (type, q) => new Promise((r) => canvas.toBlob(r, type, q));
+    let blob = await toBlob('image/webp', 0.82);
+    if (!blob || blob.type !== 'image/webp') blob = await toBlob('image/jpeg', 0.85); // older Safari
+    if (!blob) throw new Error('Fotoğraf hazırlanamadı.');
+    return blob;
+  }
+
+  const uploading = new Set();
+
+  async function uploadPhoto(it, file) {
+    uploading.add(it.id);
+    render();
+    try {
+      const blob = await preparePhoto(file);
+      const res = await fetch('/api/admin/upload', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': blob.type }, body: blob });
+      let data = {};
+      try { data = await res.json(); } catch { /* empty body */ }
+      if (res.status === 401) { showLogin('Oturum süresi doldu. Giriş yapıp fotoğrafı tekrar yükleyin.'); return; }
+      if (!res.ok) throw new Error(data.error || `Hata (${res.status})`);
+      it.image = data.image;
+      markDirty();
+      toast('Fotoğraf yüklendi. Yayınlamak için Kaydet\'e basın.', 'ok');
+    } catch (err) {
+      toast(err.message, 'error');
+    } finally {
+      uploading.delete(it.id);
+      render();
+    }
+  }
+
+  function renderPhoto(it) {
+    const box = el('div', { class: 'item__photo' });
+    const label = it.name || 'Ürün';
+    const input = el('input', {
+      type: 'file', accept: 'image/*', class: 'sr-only', tabindex: '-1', 'aria-hidden': 'true',
+      onchange: (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) uploadPhoto(it, f); },
+    });
+    const pick = (text) => el('button', {
+      class: 'pill', type: 'button', text, 'aria-label': `${label} için fotoğraf ${it.image ? 'değiştir' : 'ekle'}`,
+      onclick: () => input.click(),
+    });
+    if (uploading.has(it.id)) {
+      box.append(el('span', { class: 'photo-busy', text: 'Fotoğraf yükleniyor…' }));
+      return box;
+    }
+    if (it.image) {
+      box.append(
+        el('img', { class: 'photo-thumb', src: `/img/${it.image}`, alt: `${label} fotoğrafı`, width: '56', height: '56', loading: 'lazy' }),
+        pick('Değiştir'),
+        el('button', {
+          class: 'pill', type: 'button', text: 'Kaldır', 'aria-label': `${label} fotoğrafını kaldır`,
+          onclick: () => { it.image = ''; markDirty(); render(); },
+        }),
+      );
+    } else {
+      box.append(pick('📷 Fotoğraf ekle'));
+    }
+    box.append(input);
+    return box;
   }
 
   /* ---------- Toolbar ---------- */
@@ -425,7 +509,7 @@
           id: String(c.id || newId('c')), name: String(c.name || ''), note: String(c.note || ''), hidden: Boolean(c.hidden),
           items: (c.items || []).map((i) => ({
             id: String(i.id || newId('i')), name: String(i.name || ''), desc: String(i.desc || ''), price: String(i.price ?? ''),
-            unit: String(i.unit || ''), hidden: Boolean(i.hidden), check: Boolean(i.check),
+            unit: String(i.unit || ''), image: String(i.image || ''), hidden: Boolean(i.hidden), check: Boolean(i.check),
           })),
         })),
       };

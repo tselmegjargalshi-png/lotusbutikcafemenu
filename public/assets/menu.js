@@ -76,20 +76,36 @@
       const list = el('ul', 'items');
       list.setAttribute('role', 'list');
       for (const it of items) {
-        const li = el('li', 'item');
+        const li = el('li', it.image ? 'item item--photo' : 'item');
+        const body = it.image ? el('div', 'item__body') : li;
+        if (it.image) {
+          const btn = el('button', 'item__thumb');
+          btn.type = 'button';
+          btn.setAttribute('aria-label', `${it.name} fotoğrafını büyüt`);
+          const img = el('img');
+          img.src = it.image;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.width = 72;
+          img.height = 72;
+          btn.append(img);
+          btn.addEventListener('click', () => openPhoto(it));
+          li.append(btn, body);
+        }
         const row = el('div', 'item__row');
         const name = el('span', 'item__name');
         highlight(name, it.name, query);
         const price = el('span', 'item__price', formatPrice(it.price));
         if (it.unit && it.price) price.append(' ', el('span', 'item__unit', `/ ${it.unit}`));
         row.append(name, el('span', 'item__dots'), price);
-        li.append(row);
+        body.append(row);
         if (it.desc) {
           const d = el('p', 'item__desc');
           highlight(d, it.desc, query);
-          li.append(d);
+          body.append(d);
         }
-        if (it.unit && !it.price) li.append(el('p', 'item__desc', it.unit));
+        if (it.unit && !it.price) body.append(el('p', 'item__desc', it.unit));
         list.append(li);
       }
       section.append(head, list);
@@ -109,6 +125,21 @@
     }
     observeSections();
   }
+
+  const dialog = document.getElementById('photo');
+  function openPhoto(it) {
+    const img = dialog.querySelector('img');
+    img.src = it.image;
+    img.alt = it.name;
+    dialog.querySelector('.photo__name').textContent = it.name;
+    const price = dialog.querySelector('.photo__price');
+    price.textContent = formatPrice(it.price) + (it.unit && it.price ? ` / ${it.unit}` : '');
+    dialog.querySelector('.photo__desc').textContent = it.desc || '';
+    dialog.showModal();
+  }
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog || e.target.closest('.photo__close')) dialog.close();
+  });
 
   let observer;
   function observeSections() {

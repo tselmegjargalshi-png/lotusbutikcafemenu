@@ -2,6 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "outputDirectory": "public",
   "cleanUrls": true,
+  "rewrites": [{ "source": "/img/:name", "destination": "/api/img?name=:name" }],
   "headers": [
     {
       "source": "/(.*)",

@@ -118,7 +118,7 @@ input, button, select { font: inherit; color: inherit; }
 .item {
   display: grid; gap: 8px; align-items: center; padding: 10px; border-radius: 12px; border: 1px solid var(--line); background: #fff;
   grid-template-columns: auto 1fr;
-  grid-template-areas: "move name" "move price" "move desc" "move tools";
+  grid-template-areas: "move name" "move price" "move desc" "move photo" "move tools";
 }
 .item.is-hidden { opacity: .62; background: #FAF6F8; }
 .item.is-flagged { border-color: #EBC867; box-shadow: inset 4px 0 0 var(--yellow); }
@@ -129,6 +129,9 @@ input, button, select { font: inherit; color: inherit; }
 .price-wrap { position: relative; }
 .price-wrap .field { padding-right: 28px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .price-wrap::after { content: "₺"; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 700; pointer-events: none; }
+.item__photo { grid-area: photo; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.photo-thumb { width: 56px; height: 56px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: var(--pink-50); }
+.photo-busy { font-size: 13px; font-weight: 700; color: var(--muted); padding: 8px 0; }
 .item__tools { grid-area: tools; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .pill { border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--muted); min-height: 36px; }
 .pill[aria-pressed="true"] { background: #F3E9EE; color: var(--ink); }
@@ -139,7 +142,7 @@ button.flag { cursor: pointer; min-height: 32px; }
 @media (min-width: 760px) {
   .item {
     grid-template-columns: auto minmax(0, 2fr) minmax(0, 1.3fr) auto;
-    grid-template-areas: "move name price tools" "move desc desc tools";
+    grid-template-areas: "move name price tools" "move desc desc tools" "move photo photo tools";
   }
 }
 
