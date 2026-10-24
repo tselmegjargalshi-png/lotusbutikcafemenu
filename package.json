@@ -9,7 +9,8 @@
     "dev": "node scripts/dev-server.mjs",
     "seed": "node scripts/build-seed.mjs",
     "hash-password": "node scripts/hash-password.mjs",
-    "qr": "node scripts/make-qr.mjs"
+    "qr": "node scripts/make-qr.mjs",
+    "print": "node scripts/render-print.cjs"
   },
   "dependencies": {
     "@vercel/blob": "2.8.2"

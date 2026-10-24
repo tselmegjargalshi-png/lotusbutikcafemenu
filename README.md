@@ -6,7 +6,8 @@ Turkish, mobile-first digital menu for **Lotus Butik Cafe by Yeliz** (Milas), wi
 |---|---|
 | Public menu | https://lotusbutikcafemenu.vercel.app |
 | Admin panel | https://lotusbutikcafemenu.vercel.app/admin |
-| QR code | `print/menu-qr.png`, `print/menu-qr.svg` |
+| QR code (lotus logo, rounded style) | `print/menu-qr.png`, `print/menu-qr.svg` |
+| QR poster “Menü · Menu” | `print/menu-qr-poster.png`, `.svg`, `print/menu-qr-poster-A5.pdf` |
 | Printable table card (A6) | `print/table-card-A6.pdf` |
 
 Admin login credentials are **not** stored in this repository. The password exists here only as a scrypt hash in the `ADMIN_PASSWORD_HASH` environment variable on Vercel.
@@ -61,7 +62,7 @@ ADMIN_USERNAME=lotusadmin ADMIN_PASSWORD_HASH='scrypt$...' SESSION_SECRET=$(open
 
 ## QR code
 
-`npm run qr` regenerates `print/menu-qr.png` / `.svg`. If you add a custom domain, run `npm run qr -- https://your-domain` and reprint the card (`print/table-card.html` → print to A6).
+`npm run qr` regenerates the styled QR and poster SVGs (error correction level H, logo in a cleared centre). `npm run print` renders them to PNG and an A5 PDF (needs Playwright with Chromium). With a custom domain: `npm run qr -- https://your-domain && npm run print`.
 
 ## Deploy
 
