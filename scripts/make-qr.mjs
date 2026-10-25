@@ -14,16 +14,16 @@ const C = {
   ink: '#41206F', // QR modules: deep plum keeps strong contrast for scanners
   eye: '#8346D8', // finder centres, brand purple
   pink700: '#8346D8',
-  pink100: '#3A3A42',
+  pink100: '#5A5A5A',
   pink200: '#6E5A86',
   yellow: '#F2B705',
-  yellowSoft: '#4A4430',
+  yellowSoft: '#6A6440',
   gold: '#A87400',
-  muted: '#C9C3CE',
-  bg: '#2A2A2F',
-  neonYellow: '#FFE14D',
-  neonPink: '#FF7AC3',
-  neonLav: '#D3A0FF',
+  muted: '#E0E0E0',
+  bg: '#4F4F4F',
+  neonYellow: '#FFEB34',
+  neonPink: '#FE33EF',
+  neonLav: '#E2BBFF',
 };
 
 // Lotus mark (same shapes as public/assets/logo.svg), drawn in a 120x96 box.
