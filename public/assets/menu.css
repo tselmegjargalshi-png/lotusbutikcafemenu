@@ -67,12 +67,13 @@ a { color: var(--plum); }
 .brand__lotus { display: block; font-family: var(--serif); font-size: 46px; letter-spacing: .32em; padding-left: .32em; }
 .brand__sub { display: block; font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 38px; margin-top: 2px; }
 .brand__by {
-  margin: 8px 0 0; font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 24px;
-  color: var(--neon-pink); text-shadow: 0 0 1px #FE33EF, 0 0 8px rgba(254, 51, 239, .75), 0 0 20px rgba(254, 51, 239, .40);
+  margin: 12px 0 0; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 34px; line-height: 1.1;
+  letter-spacing: .02em; color: var(--neon-pink);
+  text-shadow: 0 0 2px #FE33EF, 0 0 10px rgba(254, 51, 239, .95), 0 0 24px rgba(254, 51, 239, .75), 0 0 46px rgba(254, 51, 239, .5);
 }
 .brand__by::before, .brand__by::after {
-  content: ""; display: inline-block; width: 28px; height: 2px; border-radius: 2px;
-  background: var(--neon-pink); box-shadow: 0 0 8px rgba(254, 51, 239, .8); vertical-align: middle; margin: 0 10px;
+  content: ""; display: inline-block; width: 34px; height: 3px; border-radius: 3px;
+  background: var(--neon-pink); box-shadow: 0 0 6px #FE33EF, 0 0 16px rgba(254, 51, 239, .8); vertical-align: middle; margin: 0 12px;
 }
 .hero__tag { margin: 12px auto 0; max-width: 34ch; font-size: 14.5px; color: #FFFFFF; }
 
@@ -204,6 +205,7 @@ mark { background: var(--yellow-50); color: #fff; box-shadow: inset 0 -2px 0 var
 @media (min-width: 640px) {
   .brand__lotus { font-size: 56px; }
   .brand__sub { font-size: 46px; }
+  .brand__by { font-size: 40px; }
   .cat__title { font-size: 36px; }
   .items { padding: 6px 22px; }
 }
