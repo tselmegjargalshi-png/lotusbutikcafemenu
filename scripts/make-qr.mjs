@@ -14,13 +14,16 @@ const C = {
   ink: '#41206F', // QR modules: deep plum keeps strong contrast for scanners
   eye: '#8346D8', // finder centres, brand purple
   pink700: '#8346D8',
-  pink100: '#FFE4EC',
-  pink200: '#CDAAFE',
+  pink100: '#3A3A42',
+  pink200: '#6E5A86',
   yellow: '#F2B705',
-  yellowSoft: '#FFE9A8',
+  yellowSoft: '#4A4430',
   gold: '#A87400',
-  muted: '#6B4C8A',
-  bg: '#FDD0DD',
+  muted: '#C9C3CE',
+  bg: '#2A2A2F',
+  neonYellow: '#FFE14D',
+  neonPink: '#FF7AC3',
+  neonLav: '#D3A0FF',
 };
 
 // Lotus mark (same shapes as public/assets/logo.svg), drawn in a 120x96 box.
@@ -105,19 +108,21 @@ writeFileSync(out('menu-qr-poster.svg'), `<svg xmlns="http://www.w3.org/2000/svg
 .serif{font-family:'Cormorant Garamond',Georgia,serif}.sans{font-family:'Nunito Sans',Arial,sans-serif}.mono{font-family:'JetBrains Mono',Menlo,monospace}
 </style>
 <defs>
-  <filter id="sh" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="${C.pink700}" flood-opacity=".10"/></filter>
+  <filter id="sh" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#000" flood-opacity=".45"/></filter>
+  <filter id="glowY" x="-20%" y="-40%" width="140%" height="180%"><feDropShadow dx="0" dy="0" stdDeviation="9" flood-color="${C.neonYellow}" flood-opacity=".45"/></filter>
+  <filter id="glowL" x="-20%" y="-40%" width="140%" height="180%"><feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#C77DFF" flood-opacity=".45"/></filter>
 </defs>
 <rect width="${W}" height="${H}" fill="${C.bg}"/>
 ${dots}
 ${lotus(W / 2 - 115, 70, 230)}
-<text x="${W / 2 + 13}" y="334" text-anchor="middle" class="serif" font-weight="700" font-size="74" letter-spacing="26" fill="${C.ink}">LOTUS</text>
-<text x="${W / 2}" y="404" text-anchor="middle" class="serif" font-style="italic" font-weight="600" font-size="64" fill="${C.gold}">Butik Cafe</text>
-<text x="${W / 2}" y="528" text-anchor="middle" class="serif" font-weight="700" font-size="96" fill="${C.pink700}">Menü · Menu</text>
+<text x="${W / 2 + 13}" y="334" text-anchor="middle" class="serif" font-weight="700" font-size="74" letter-spacing="26" fill="${C.neonYellow}" filter="url(#glowY)">LOTUS</text>
+<text x="${W / 2}" y="404" text-anchor="middle" class="serif" font-style="italic" font-weight="600" font-size="64" fill="${C.neonYellow}" filter="url(#glowY)">Butik Cafe</text>
+<text x="${W / 2}" y="528" text-anchor="middle" class="serif" font-weight="700" font-size="96" fill="${C.neonLav}" filter="url(#glowL)">Menü · Menu</text>
 <text x="${W / 2}" y="584" text-anchor="middle" class="sans" font-weight="600" font-size="27" letter-spacing="5" fill="${C.muted}">KAHVALTI · TATLI · KAHVE · MİLAS</text>
 <rect x="${panel.x}" y="${panel.y}" width="${panel.w}" height="${panel.w}" rx="44" fill="#fff" filter="url(#sh)"/>
 ${styledQr(panel.x + qrInset, panel.y + qrInset, panel.w - qrInset * 2)}
-<text x="${W / 2}" y="${panel.y + panel.w + 82}" text-anchor="middle" class="mono" font-weight="500" font-size="34" fill="${C.ink}">${display}</text>
-<text x="${W / 2}" y="${panel.y + panel.w + 146}" text-anchor="middle" class="sans" font-weight="600" font-size="38" fill="${C.gold}">Kamerayla okutun · Scan with your camera</text>
+<text x="${W / 2}" y="${panel.y + panel.w + 82}" text-anchor="middle" class="mono" font-weight="500" font-size="34" fill="#FFFFFF">${display}</text>
+<text x="${W / 2}" y="${panel.y + panel.w + 146}" text-anchor="middle" class="sans" font-weight="600" font-size="38" fill="${C.neonPink}">Kamerayla okutun · Scan with your camera</text>
 </svg>
 `);
 
